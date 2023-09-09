@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HNG Frontend Task 1</title>
+    <style>
+        body{
+            height: 100vh;
+            background-color: #e6fff1;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .container {
+            padding: 30px;
+        }
+        .container > div:nth-child(1){
+            box-shadow: inset 2px 2px 4px black;
+            & img{
+                width: 90%;
+            }
+        }
+        .container h1{
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            color: navy;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        .flex{
+            display: flex;
+            gap: 40px;
+        }
+        .flex *{
+            width: 50%;
+            font-family: courier;
+            font-weight: bold;
+        }
+        .flex *:nth-child(odd){
+            text-align: right;
+        }
+        .flex *:nth-child(even){
+            text-align: left;
+        }
+        .container > div:last-child{
+            margin: 20px;
+            text-align: center;
+            & a{
+                background-color: navy;
+                color: #eee;
+                border-radius: 6px;
+                padding: 10px 20px;
+                text-decoration: none;
+            }
+            & a:hover{
+                opacity: 0.8;
+                filter: grayscale(0.8);
+            }
+            & span{
+                font-weight: bolder;
+            }
+        }
+    </style>
+</head>
+<body>
+     <div class="container">
+        <div>
+            <img src="https://ca.slack-edge.com/T05FFAA91JP-U05RN9T9UQZ-e0513373f264-512" alt="PURE" data-testid="slackDisplayImage">
+        </div>  
+        <div>
+            <h1 data-testid="slackUserName">PURE</h1>
+        </div>        
+        <div class="flex">
+            <label>Current Day:</label>
+            <span data-testid="currentDayOfTheWeek"></span>
+        </div>
+        <div class="flex">
+            <label>Current UTC Time:</label>
+            <span data-testid="currentUTCTime"></span>
+        </div>
+        <div class="flex">
+            <label>Track:</label>
+            <span data-testid="myTrack">Frontend</span>
+        </div>
+        <div>
+            <a data-testid="githubURL" href="https://github.com/ruxy1212/miniature-truck">Github Repository <span>>></span></a>
+        </div>
+    </div>
+    <script>
+        setInterval(() => {
+            const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const d = new Date();
+            const currentDay = days[d.getUTCDay()], currentUTC = d.getTime();
+            document.querySelector('span[data-testid="currentDayOfTheWeek"]').textContent = currentDay;
+            document.querySelector('span[data-testid="currentUTCTime"]').textContent = currentUTC;
+        }, 1000);
+    </script>
+</body>
+</html>
