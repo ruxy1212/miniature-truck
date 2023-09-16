@@ -119,9 +119,13 @@ const HomePage = () => {
 				</Link>
 			</div>
 			<div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 m-12 gap-16">
-				{movies.map((movie, index) => (
-					<Card key={index} movie={movie} genres={genres} />
-				))}
+				{movies ? (
+					movies.map((movie, index) => (
+						<Card key={index} movie={movie} genres={genres} />
+					))
+				) : (
+					<div className="flex justify-center text-rose-700">No data available. Check your network connection</div>
+				)}
 			</div>
 		</section>
 		<Footer />
