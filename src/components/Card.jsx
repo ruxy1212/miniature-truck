@@ -37,7 +37,7 @@ const Card = ({ movie, genres }) => {
 					<FontAwesomeIcon icon={faHeart} />
 				</span>
 				<img src={ `${baseUrl}${movie.poster_path}` } className="w-full object-cover h-[375px]" data-testid="movie-poster"/>
-				<span className="text-gray-400 font-bold text-xs" data-testid="movie-release-date">Released: {formattedDate}</span>
+				<span className="text-gray-400 font-bold text-xs">Released: {formattedDate} (<span data-testid="movie-release-date">{movie.release_date}</span>)</span>
 				<span data-testid="movie-title" className="text-gray-900 font-bold text-lg">{movie && (movie.title ?? movie?.original_name) }</span>
 				<div className="flex justify-between text-xs font-normal h-[17px]">
 					<div className="flex gap-2">

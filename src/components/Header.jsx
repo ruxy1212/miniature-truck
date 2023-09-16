@@ -14,10 +14,8 @@ const Header = ({ handleSideBar }) => {
 	const [isVisible, setIsVisible] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
 	const [mobile, setMobile] = useState([false, "closed"]);
-	// const [outsideMobileSearch, setOutsideMobileSearch] = useState(false);
 	const handleOutsideClick = () => {
 		if(mobile[1] === "opened") setMobile([false, "closed"]);
-		console.log(mobile);
 	};
 	const searchMovie = (event) => {
 		setQString(event.target.value);
@@ -30,7 +28,7 @@ const Header = ({ handleSideBar }) => {
         
     };
 	const searchMovies = (query) => {
-		const apiKey = "07ec7d229bdb91d3b7906c73fdf81ee0";
+		const apiKey = import.meta.env.VITE__TMDB_API_KEY;
 		const url = `/search/movie?query=${query}&api_key=${apiKey}&language=en-US&page=1`;
 
 		axios.get(url).then((response) => {

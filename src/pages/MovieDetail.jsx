@@ -16,15 +16,14 @@ const MovieDetail = () => {
     useEffect(() => {
 		const getMovie = async () => {
             try {
-                const urlParams = window.location.pathname.split('/'); console.log(urlParams);
-                const movie_id = urlParams[urlParams.length-1]; console.log(movie_id);
-                const apiKey = "07ec7d229bdb91d3b7906c73fdf81ee0"; ///movie/?
+                const urlParams = window.location.pathname.split('/'); 
+                const movie_id = urlParams[urlParams.length-1];
+                const apiKey = import.meta.env.VITE__TMDB_API_KEY;
                 const resD = await axios.get(`/movie/${movie_id}?api_key=${apiKey}&language=en-US`);
                 const resT = await axios.get(`/movie/upcoming?api_key=${apiKey}&language=en-US&page=1`);
             if (resD.status === 200 && resT.status === 200) {
                     setMovieDetail(resD.data);
                     setRecentList(resT.data.results.slice(0, 3));
-                    console.log(resD.data);
                 }else{
                     console.log("Something went wrong");
                 }
@@ -33,10 +32,9 @@ const MovieDetail = () => {
             }
         };
         getMovie();
-        //producer(s),language,tagline
     }, []);
     const date = new Date(movieDetail.release_date);
-    const time = (movieDetail.runtime/60).toFixed(0)+'h '+(movieDetail.runtime%60).toFixed(0)+'m';
+    // const time = (movieDetail.runtime/60).toFixed(0)+'h '+(movieDetail.runtime%60).toFixed(0)+'m';
     const today = new Date();
     const tMonth = format(today, 'MMMM');
     const awards = Math.floor(Math.random() * 10)+1;
@@ -87,8 +85,8 @@ const MovieDetail = () => {
                                         </div>&emsp;
                                         <div className="inline-block">
                                             <span data-testid="movie-title">{ movieDetail && (movieDetail.title ?? movieDetail?.original_name) }</span>&nbsp;•&nbsp;
-                                            <span data-testid="movie-release-date">{date.getFullYear()}</span>&nbsp;•&nbsp;
-                                            <span data-testid="movie-runtime">{time}</span>
+                                            <span>{date.getFullYear()}</span>&nbsp;•&nbsp;
+                                            <span><span data-testid="movie-runtime">{movieDetail.runtime}</span>m</span>
                                         </div>
                                     </div>
                                     <div className="flex gap-4 flex-wrap w-full md:w-[30%]">
@@ -97,7 +95,7 @@ const MovieDetail = () => {
                                         ))}
                                     </div>
                                 </div>
-                                <p className="text-gray-800 py-4 text-lg">{movieDetail.overview}</p>
+                                <p className="text-gray-800 py-4 text-lg" data-testid="movie-overview">{movieDetail.overview}</p>
                                 <div className="text-gray-800 py-4 text-lg">
                                     <p className="my-4">Producer(s): <span className="text-rose-700">
                                         {movieDetail.production_companies && movieDetail.production_companies.map((company, index) => (<span key={index} className="p-[2px] mx-[4px] bg-gray-200">{company.name}</span>))}
@@ -108,6 +106,7 @@ const MovieDetail = () => {
                                         ))
                                     }</span></p>
                                     <p className="my-4">Tagline: <span className="italic text-rose-700">{movieDetail.tagline}</span></p>
+                                    <p className="my-4">Released Date (in UTC): <span className="italic text-rose-700" data-testid="movie-release-date">{date.getTime()}</span></p>
                                 </div>
                                 <div className="my-12 border border-gray-300 rounded-xl w-full h-[50px] flex ">
                                     <span className="text-gray-100 text-base rounded-xl bg-rose-700 px-6 h-full flex items-center leading-none">Top Rated Movie #{movieDetail.popularity && ((movieDetail?.popularity.toFixed(0)))}</span>

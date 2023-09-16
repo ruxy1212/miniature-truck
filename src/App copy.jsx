@@ -11,7 +11,7 @@ export default function App() {
   useEffect(() => {
 		const getTopMovies = async () => {
       try {
-        const apiKey = "bb6392940bd784abea6b623f4c5859df"; //07ec7d229bdb91d3b7906c73fdf81ee0
+        const apiKey = import.meta.env.VITE__TMDB_API_KEY;
 				const res = await axios.get(`/top_rated?api_key=${apiKey}&language=en-US&page=1`);
 
 				if (res.status === 200) {

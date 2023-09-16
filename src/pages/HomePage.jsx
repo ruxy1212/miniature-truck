@@ -19,7 +19,7 @@ const HomePage = () => {
 	useEffect(() => {
 		const getTopMovies = async () => {
 			try {
-				const apiKey = "07ec7d229bdb91d3b7906c73fdf81ee0";
+				const apiKey = import.meta.env.VITE__TMDB_API_KEY;
 				const resT = await axios.get(`/movie/top_rated?api_key=${apiKey}&language=en-US&page=1`);
 				if (resT.status === 200) {
 					const resP = await axios.get(`/movie/now_playing?api_key=${apiKey}&language=en-US&page=1`);
