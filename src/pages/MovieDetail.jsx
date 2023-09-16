@@ -57,6 +57,18 @@ const MovieDetail = () => {
     const toggleIcon2 = () => {
 		setIsActive2(!isActive2);
 	};
+    function nFormat(n) {
+        if (n >= 1000000000) {
+          return (n / 1000000000).toFixed(1) + "B";
+        } else if (n >= 1000000) {
+          return (n / 1000000).toFixed(1) + "M";
+        } else if (n >= 1000) {
+          return (n / 1000).toFixed(1) + "k";
+        } else {
+          return n?.toString();
+        }
+    }
+      
   return (
     <>
         <Header handleSideBar={handleSideBar} />
@@ -92,7 +104,7 @@ const MovieDetail = () => {
                                     </div>
                                     <div className="flex gap-4 flex-wrap w-full md:w-[30%]">
                                         {movieDetail.genres && movieDetail.genres.map((genre) => (
-                                            <span key={genre.id} className="text-[#B91C1C] border flex justify-center items-center py-[1px] px-[10px] border-[#F8E7EB] rounded-[15px] text-sm cursor-default">{genre.name}</span>
+                                            <span key={genre.id} className="text-[#B91C1C] border flex justify-center items-center py-[1px] px-[10px] border-[#F8E7EB] rounded-[15px] text-sm cursor-default h-[25px]">{genre.name}</span>
                                         ))}
                                     </div>
                                 </div>
@@ -118,9 +130,9 @@ const MovieDetail = () => {
                             <div className="w-full md:w-[34%] flex flex-col gap-5">
                                 <div className="flex justify-end gap-3">
                                     <FontAwesomeIcon className="text-xl text-yellow-600" icon={faStar} />
-                                    <span className="text-xl text-gray-500">8.5</span>
+                                    <span className="text-xl text-gray-500">{ movieDetail.vote_average.toFixed(1) }</span>
                                     <span className="text-lg text-gray-800">|</span>
-                                    <span className="text-lg text-gray-800">350k</span>
+                                    <span className="text-lg text-gray-800">{ nFormat(movieDetail.vote_count) }</span>
                                 </div>
                                 <div className="flex justify-around">
                                     <FontAwesomeIcon className={`p-1 text-xl cursor-pointer rounded-sm ${isActive0?' bg-gray-100 hover:bg-gray-200 text-rose-700 hover:text-rose-950':' bg-rose-300 hover:bg-gray-200 text-gray-300 hover:text-rose-300'} `} icon={faBookmark} onClick={toggleIcon0} />
