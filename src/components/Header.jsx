@@ -50,8 +50,8 @@ const Header = ({ handleSideBar }) => {
 	}
 	
 	return (
-		<ClickListener onClickOutside={ handleOutsideClick }>
-			<nav className="navbar__stick p-4 sticky top-0 left-0 w-full z-10 border-gray-100">
+		<nav className="navbar__stick p-4 sticky top-0 left-0 w-full z-10 border-gray-100">
+			<ClickListener onClickOutside={ handleOutsideClick }>
 				<div className={`primary__nav ${mobile[0]? 'hidden':'block'}`}>
 					<div className="flex justify-between lg:mx-24 md:mx-12">
 						<div className="lg:hidden flex items-center">
@@ -115,8 +115,8 @@ const Header = ({ handleSideBar }) => {
 						)}					  
 					</div>
 				</div>
-			</nav>
-		</ClickListener>
+			</ClickListener>
+		</nav>
 	);
 };
 
