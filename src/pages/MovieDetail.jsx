@@ -107,7 +107,8 @@ const MovieDetail = () => {
                                         ))
                                     }</span></p>
                                     <p className="my-4">Tagline: <span className="italic text-rose-700">{movieDetail.tagline}</span></p>
-                                    <p className="my-4">Released Date (in UTC): <span className="italic text-rose-700" data-testid="movie-release-date">{time.toISOString()}</span></p>
+                                    <p className="my-4">Date Released: <span className="italic text-rose-700" data-testid="movie-release-date">{movieDetail.release_date}</span></p>
+                                    <p className="my-4">Released Date (in UTC): <span className="italic text-rose-700">{time.toISOString()}</span></p>
                                 </div>
                                 <div className="my-12 border border-gray-300 rounded-xl w-full h-[50px] flex ">
                                     <span className="text-gray-100 text-base rounded-xl bg-rose-700 px-6 h-full flex items-center leading-none">Top Rated Movie #{movieDetail.popularity && ((movieDetail?.popularity.toFixed(0)))}</span>
