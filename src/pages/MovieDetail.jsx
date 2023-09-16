@@ -35,6 +35,7 @@ const MovieDetail = () => {
     }, []);
     const date = new Date(movieDetail.release_date);
     // const time = (movieDetail.runtime/60).toFixed(0)+'h '+(movieDetail.runtime%60).toFixed(0)+'m';
+    const time = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
     const today = new Date();
     const tMonth = format(today, 'MMMM');
     const awards = Math.floor(Math.random() * 10)+1;
@@ -106,7 +107,7 @@ const MovieDetail = () => {
                                         ))
                                     }</span></p>
                                     <p className="my-4">Tagline: <span className="italic text-rose-700">{movieDetail.tagline}</span></p>
-                                    <p className="my-4">Released Date (in UTC): <span className="italic text-rose-700" data-testid="movie-release-date">{date.getTime()}</span></p>
+                                    <p className="my-4">Released Date (in UTC): <span className="italic text-rose-700" data-testid="movie-release-date">{time.toISOString()}</span></p>
                                 </div>
                                 <div className="my-12 border border-gray-300 rounded-xl w-full h-[50px] flex ">
                                     <span className="text-gray-100 text-base rounded-xl bg-rose-700 px-6 h-full flex items-center leading-none">Top Rated Movie #{movieDetail.popularity && ((movieDetail?.popularity.toFixed(0)))}</span>
