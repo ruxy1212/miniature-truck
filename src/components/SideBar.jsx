@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPowerOff, faHome, faTv, faVideoCamera, faCalendar, faClose } from "@fortawesome/free-solid-svg-icons";
+import { faPowerOff, faHome, faTv, faVideoCamera, faCalendar, faClose, faSearch, faStarHalfStroke } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import logo from "../assets/tv.svg";
 import PropTypes from 'prop-types';
@@ -13,13 +13,13 @@ const SideBar = ({closeSideBar, origin}) => {
       active: origin=='home'?true:false
     },
     {
-      title: "Movies",
-      icon: faVideoCamera,
-      route: "#",
-      active: origin=='movie'?true:false
+      title: "Featured",
+      icon: faStarHalfStroke,
+      route: "/featured",
+      active: origin=='featured'?true:false
     },
     {
-      title: "TV Series",
+      title: "Popular",
       icon: faTv,
       route: "",
       active: false
@@ -30,11 +30,23 @@ const SideBar = ({closeSideBar, origin}) => {
       route: "",
       active: false
     },
+    {
+      title: "Trending",
+      icon: faVideoCamera,
+      route: "",
+      active: false
+    },
+    {
+      title: "Search",
+      icon: faSearch,
+      route: "",
+      active: origin=='search'||origin=='free'?true:false
+    },
   ];
 
   return (
     <div className="border-r-2 border-y-2 rounded-r-[45px] w-full bg-white relative">
-        <button onClick={ closeSideBar } className="absolute top-6 right-6 w-10 h-10 rounded-full flex justify-center bg-rose-700 items-center ring-2 ring-gray-800 __ring-change hover:bg-rose-900 hover:opacity-80 text-white lg:hidden">
+        <button onClick={ closeSideBar } className={`absolute top-6 right-6 w-10 h-10 rounded-full flex justify-center bg-rose-700 items-center ring-2 ring-gray-800 __ring-change hover:bg-rose-900 hover:opacity-80 text-white ${origin=='home'?'lg:block':'lg:hidden'}`}>
             <FontAwesomeIcon icon={faClose} />
         </button>
       <div className="flex flex-col pt-[50px] items-center">
@@ -68,11 +80,12 @@ const SideBar = ({closeSideBar, origin}) => {
           <p className="text-[15px] font-bold text-[#333333CC] mt-[42px]">
             Play movie quizes and earn free tickets
           </p>
-          <p className="text-[12px] text-[#666666]">
+          {/* <p className="text-[12px] text-[#666666]">
             50k people are playing now
-          </p>
+          </p> */}
           <button className="text-[12px] h-[30px] w-[112px] mb-[16px] text-[#BE123C] bg-[#d94e718c] hover:bg-[#241e1f8c] font-semibold rounded-[30px]">
-            Start Playing
+            {/* Start Playing */}
+            Coming Soon!
           </button>
         </div>
 

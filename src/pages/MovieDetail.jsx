@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import {useLocation} from 'react-router-dom';
 import Header from "../components/MobileHeader";
 import Footer from "../components/Footer";
 import axios from "../../api/axios";
@@ -9,6 +10,8 @@ import { faPlay, faChevronDown, faStar, faBookmark, faShare, faHeart, faRecordVi
 import SideBar from "../components/SideBar";
 
 const MovieDetail = () => { 
+    const location = useLocation();
+    const origin = location.state?location.state.origin:'free';
     const [movieDetail, setMovieDetail] = useState([]);
     const [recentList, setRecentList] = useState([]);
 	const baseUrl = "https://image.tmdb.org/t/p/w500";
@@ -74,7 +77,7 @@ const MovieDetail = () => {
         <Header handleSideBar={handleSideBar} />
         <div className="flex justify-center">
             <div className={`w-[80%] top-0 left-0 z-20 lg:w-[20%] h-full lg:h-auto overflow-auto lg:overflow-hidden lg:flex fixed lg:relative ${isActive? 'block' : 'hidden'} }`}> 
-                <SideBar closeSideBar={handleSideBar}  origin="movie" />
+                <SideBar closeSideBar={handleSideBar}  origin={origin} />
             </div>
             <main className="w-[95%] lg:w-[80%] ">
                 { movieDetail && (movieDetail.title || movieDetail.original_name) ? (
@@ -159,7 +162,7 @@ const MovieDetail = () => {
                         </div>
                     </div> 
                 ) : (
-                    <div className="flex justify-center text-rose-700">No data available. Check your network connection</div>
+                    <div className="flex justify-center text-rose-700 h-full items-center">No data available. Check your network connection</div>
                 )}                
                 <Footer />   
             </main>
